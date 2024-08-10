@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'habit-tracker-eaf6b.appspot.com',
     measurementId: 'G-9G9BM0BERB',
   );
+
 }

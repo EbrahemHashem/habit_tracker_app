@@ -16,8 +16,8 @@ class HabitTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      color: Color.fromARGB(251, 251, 251, 255),
+    return MaterialApp(
+      color: const Color.fromARGB(251, 251, 251, 255),
       debugShowCheckedModeBanner: false,
       home: SignIn(),
     );

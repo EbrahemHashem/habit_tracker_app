@@ -35,7 +35,7 @@ class ForgetPasswordView extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            CustomButton(() {}, Title: 'Submit'),
+            CustomButton(title: 'Submit'),
           ])),
     );
   }
