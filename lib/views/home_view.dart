@@ -155,9 +155,10 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: _buildHabitList(),
+      body: ListView(children: [_buildHeatMap(), _buildHabitList()]),
     );
   }
+  //heat map
 
   Widget _buildHabitList() {
     // habit database
