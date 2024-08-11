@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker_app/database/habit_database.dart';
-import 'package:habit_tracker_app/views/home_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:habit_tracker_app/views/sign_in_view.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -29,10 +29,10 @@ class HabitTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      color: Color.fromARGB(251, 251, 251, 255),
+    return MaterialApp(
+      color: const Color.fromARGB(251, 251, 251, 255),
       debugShowCheckedModeBanner: false,
-      home: HomeView(),
+      home: SignIn(),
     );
   }
 }
