@@ -151,7 +151,10 @@ class _HomeViewState extends State<HomeView> {
           size: 30,
         ),
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: _buildHabitList(),
     );
   }

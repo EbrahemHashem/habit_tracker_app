@@ -38,17 +38,24 @@ class MyHabitTile extends StatelessWidget {
           }
         },
         child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 5),
-            margin: const EdgeInsets.symmetric(
-              vertical: 5,
-              horizontal: 25,
-            ),
+            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.only(top: 10),
+            // margin: const EdgeInsets.symmetric(
+            //   vertical: 5,
+            //   horizontal: 25,
+            // ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: isCompleted ? Colors.green : Colors.orange,
             ),
             child: ListTile(
-              title: Text(text),
+              title: Text(
+                text,
+                style: TextStyle(
+                  color: isCompleted ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               leading: Checkbox(value: isCompleted, onChanged: onChanged),
             )),
       ),
