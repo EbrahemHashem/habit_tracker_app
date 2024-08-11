@@ -3,6 +3,7 @@ import 'package:habit_tracker_app/database/habit_database.dart';
 import 'package:habit_tracker_app/models/habit.dart';
 import 'package:habit_tracker_app/util/habit_util.dart';
 import 'package:habit_tracker_app/widgets/my_habit_tile.dart';
+import 'package:habit_tracker_app/widgets/my_heat_map.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -158,7 +159,25 @@ class _HomeViewState extends State<HomeView> {
       body: ListView(children: [_buildHeatMap(), _buildHabitList()]),
     );
   }
-  //heat map
+
+  // build heat map
+  Widget _buildHeatMap() {
+    // habit database
+    final habitDatabase = context.watch<HabitDatabase>();
+
+    // current habits
+    List<Habit> currentHabits = habitDatabase.currentHabits;
+    // return heatmap Ui
+    return FutureBuilder<DateTime?>(
+        future: habitDatabase.getFirstLaunchData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return MyHeatMap(startDate: snapshot.data!, dataSets: prepareHeatDatasets(currentHabits));
+          } else {
+            return Container();
+          }
+        });
+  }
 
   Widget _buildHabitList() {
     // habit database
@@ -168,6 +187,8 @@ class _HomeViewState extends State<HomeView> {
     // return list of habits ui
     return ListView.builder(
       itemCount: currentHabits.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final habit = currentHabits[index];
         bool isCompletedToday = isHabitCompletedToday(habit.completedDays);
