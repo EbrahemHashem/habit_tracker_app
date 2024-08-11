@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker_app/views/sign_in_view.dart';
+import 'package:habit_tracker_app/database/habit_database.dart';
+import 'package:habit_tracker_app/views/home_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // initialize database
+  await HabitDatabase.initialize();
+  await HabitDatabase.saveFirstLaunchData();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const HabitTrackerApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => HabitDatabase()),
+      ],
+      child: const HabitTrackerApp(),
+    ),
+  );
 }
 
 class HabitTrackerApp extends StatelessWidget {
@@ -16,10 +29,10 @@ class HabitTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      color: const Color.fromARGB(251, 251, 251, 255),
+    return const MaterialApp(
+      color: Color.fromARGB(251, 251, 251, 255),
       debugShowCheckedModeBanner: false,
-      home: SignIn(),
+      home: HomeView(),
     );
   }
 }
